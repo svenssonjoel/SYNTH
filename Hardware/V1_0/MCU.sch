@@ -4,10 +4,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 4 4
-Title ""
+Title "SYNTH"
 Date ""
-Rev ""
-Comp ""
+Rev "1"
+Comp "Bo Joel Svensson"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -357,56 +357,6 @@ F 3 "" H 6650 5450 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	6650 5450 6500 5450
-$Comp
-L power:GND #PWR015
-U 1 1 5E0B620C
-P 8300 5700
-F 0 "#PWR015" H 8300 5450 50  0001 C CNN
-F 1 "GND" H 8305 5527 50  0000 C CNN
-F 2 "" H 8300 5700 50  0001 C CNN
-F 3 "" H 8300 5700 50  0001 C CNN
-	1    8300 5700
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GNDA #PWR016
-U 1 1 5E0B651C
-P 8800 5700
-F 0 "#PWR016" H 8800 5450 50  0001 C CNN
-F 1 "GNDA" H 8805 5527 50  0000 C CNN
-F 2 "" H 8800 5700 50  0001 C CNN
-F 3 "" H 8800 5700 50  0001 C CNN
-	1    8800 5700
-	1    0    0    -1  
-$EndComp
-Text Notes 8450 6050 0    50   ~ 0
-Connected at power source\n
-$Comp
-L power:PWR_FLAG #FLG01
-U 1 1 5E0B7648
-P 8300 5550
-F 0 "#FLG01" H 8300 5625 50  0001 C CNN
-F 1 "PWR_FLAG" H 8300 5723 50  0000 C CNN
-F 2 "" H 8300 5550 50  0001 C CNN
-F 3 "~" H 8300 5550 50  0001 C CNN
-	1    8300 5550
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:PWR_FLAG #FLG02
-U 1 1 5E0B7923
-P 8800 5550
-F 0 "#FLG02" H 8800 5625 50  0001 C CNN
-F 1 "PWR_FLAG" H 8800 5723 50  0000 C CNN
-F 2 "" H 8800 5550 50  0001 C CNN
-F 3 "~" H 8800 5550 50  0001 C CNN
-	1    8800 5550
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8300 5700 8300 5550
-Wire Wire Line
-	8800 5700 8800 5550
 Wire Wire Line
 	6250 4750 6250 4800
 $Comp
@@ -777,4 +727,28 @@ VREF
 Wire Wire Line
 	6850 5250 6500 5250
 Connection ~ 6500 5250
+NoConn ~ 3550 1450
+NoConn ~ 3550 1550
+NoConn ~ 3550 1650
+NoConn ~ 3550 1750
+NoConn ~ 3550 2050
+NoConn ~ 3550 2150
+NoConn ~ 3550 2250
+NoConn ~ 3550 2350
+NoConn ~ 3550 2450
+$Comp
+L power:+5V #PWR0102
+U 1 1 5DD19B4C
+P 9850 3900
+F 0 "#PWR0102" H 9850 3750 50  0001 C CNN
+F 1 "+5V" H 9865 4073 50  0000 C CNN
+F 2 "" H 9850 3900 50  0001 C CNN
+F 3 "" H 9850 3900 50  0001 C CNN
+	1    9850 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9950 4050 9850 4050
+Wire Wire Line
+	9850 4050 9850 3900
 $EndSCHEMATC

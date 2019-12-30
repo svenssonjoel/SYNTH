@@ -4,10 +4,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 4
-Title ""
+Title "SYNTH"
 Date ""
-Rev ""
-Comp ""
+Rev "1"
+Comp "Bo Joel Svensson"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -19,13 +19,13 @@ Comment8 ""
 Comment9 ""
 $EndDescr
 $Sheet
-S 4600 3800 1150 1500
+S 2150 5900 1150 1500
 U 5E063F78
 F0 "DCDC" 50
 F1 "DCDC.sch" 50
 $EndSheet
 $Sheet
-S 7600 3850 1000 1500
+S 5100 3550 1000 1500
 U 5E06400A
 F0 "Information" 50
 F1 "Information.sch" 50
@@ -255,8 +255,6 @@ Wire Wire Line
 Wire Wire Line
 	6950 2350 7000 2350
 Connection ~ 5000 2700
-Text Notes 7600 2500 0    50   ~ 0
-SD Card for logging,\nsample buffering, etc.
 $Sheet
 S 2050 1100 1500 4400
 U 5E063F28
@@ -294,4 +292,6 @@ Connection ~ 4750 2050
 Wire Wire Line
 	3550 2150 4650 2150
 Connection ~ 4650 2150
+Text Notes 5750 2400 0    50   ~ 0
+Waveform storage\n
 $EndSCHEMATC
