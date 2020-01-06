@@ -1,39 +1,13 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
-# Amplifier_Operational_LF356
-#
-DEF Amplifier_Operational_LF356 U 0 5 Y Y 1 F N
-F0 "U" 0 250 50 H V L CNN
-F1 "Amplifier_Operational_LF356" 0 150 50 H V L CNN
-F2 "" 50 50 50 H I C CNN
-F3 "" 150 150 50 H I C CNN
-ALIAS AD8610 LF155 LF156 LF256 LF257 LF355 LF356 LF357 TL081 TL061 TL071
-$FPLIST
- SOIC*3.9x4.9mm*P1.27mm*
- DIP*W7.62mm*
- TSSOP*3x3mm*P0.65mm*
-$ENDFPLIST
-DRAW
-P 4 0 1 10 -200 200 200 0 -200 -200 -200 200 f
-X NULL 1 0 -300 200 U 50 20 1 1 I
-X - 2 -300 -100 100 R 50 50 1 1 I
-X + 3 -300 100 100 R 50 50 1 1 I
-X V- 4 -100 -300 150 U 50 50 1 1 W
-X NULL 5 100 -300 250 U 50 20 1 1 I
-X ~ 6 300 0 100 L 50 50 1 1 O
-X V+ 7 -100 300 150 D 50 50 1 1 W
-X NC 8 0 100 100 D 50 50 1 1 N N
-ENDDRAW
-ENDDEF
-#
 # Simulation_SPICE_VDC
 #
 DEF Simulation_SPICE_VDC V 0 1 N Y 1 F N
 F0 "V" 100 100 50 H V L CNN
 F1 "Simulation_SPICE_VDC" 100 0 50 H V L CNN
 F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
+F3 "~" 0 0 50 H I C CNN
 F4 "Y" 0 0 50 H I L CNN "Spice_Netlist_Enabled"
 F5 "V" 0 0 50 H I L CNN "Spice_Primitive"
 F6 "dc(1)" 100 -100 50 H V L CNN "Spice_Model"
@@ -55,7 +29,7 @@ DEF Simulation_SPICE_VSIN V 0 1 N Y 1 F N
 F0 "V" 100 100 50 H V L CNN
 F1 "Simulation_SPICE_VSIN" 100 0 50 H V L CNN
 F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
+F3 "~" 0 0 50 H I C CNN
 F4 "Y" 0 0 50 H I L CNN "Spice_Netlist_Enabled"
 F5 "V" 0 0 50 H I L CNN "Spice_Primitive"
 F6 "sin(0 1 1k)" 100 -100 50 H V L CNN "Spice_Model"
@@ -90,8 +64,9 @@ F1 "power_VCC" 0 150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
-C 0 75 25 0 1 0 N
-P 2 0 1 0 0 0 0 50 N
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
 X VCC 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
@@ -104,20 +79,19 @@ F1 "power_VSS" 0 150 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
-C 0 75 25 0 1 0 N
-P 2 0 1 0 0 0 0 50 N
+P 2 0 1 0 0 0 0 100 N
+P 4 0 1 0 30 50 -30 50 0 100 30 50 F
 X VSS 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
-# pspice_C
+# pspice_CAP
 #
-DEF pspice_C C 0 10 Y Y 1 F N
+DEF pspice_CAP C 0 10 Y Y 1 F N
 F0 "C" 100 150 50 V V C CNN
-F1 "pspice_C" 100 -150 50 V V C CNN
+F1 "pspice_CAP" 100 -150 50 V V C CNN
 F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-ALIAS C
+F3 "~" 0 0 50 H I C CNN
 DRAW
 P 2 0 1 0 -150 -50 150 -50 N
 P 2 0 1 0 -150 50 150 50 N
@@ -132,7 +106,7 @@ DEF pspice_R R 0 0 N Y 1 F N
 F0 "R" 80 0 50 V V C CNN
 F1 "pspice_R" 0 0 50 V V C CNN
 F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
+F3 "~" 0 0 50 H I C CNN
 DRAW
 S -40 150 40 -150 0 1 0 N
 X ~ 1 0 250 100 D 50 50 1 1 P
