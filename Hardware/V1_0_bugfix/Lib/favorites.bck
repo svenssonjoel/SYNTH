@@ -1,0 +1,7 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP CAT5113
+D 100-tap digipot (SOIC-8)
+$ENDCMP
+#
+#End Doc Library
