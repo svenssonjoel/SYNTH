@@ -22,13 +22,12 @@ Copyright 2020   Anders Thorsén thorsenanders@yahoo.com
 
 #include "hal.h"
 #include "hal_pal.h"
-#include "config.h"
 
-extern int32_t dacOut1value;
-extern int32_t dacOut2value;
+#define DAC_GPIO GPIOA
+#define DAC1_PIN 4
+#define DAC2_PIN 5
 
 extern void dac_init(void);
-extern int32_t deltaDAC(int32_t ADCvalue);
-
+extern void dac_write(int dac, int16_t val);
 
 #endif

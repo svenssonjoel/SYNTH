@@ -1,5 +1,6 @@
 /*
     Copyright 2020   Anders Thorsén thorsenanders@yahoo.com
+                     Bo Joel Svensson svenssonjoel@yahoo.se
 
 
     This program is free software: you can redistribute it and/or modify
@@ -19,31 +20,18 @@
 #include "dac.h"
 #include <math.h>
 
-int32_t dacOut1value;
-int32_t dacOut2value;
-
-void toggler(GPTDriver *arg) {
-  (void) arg;
-  /*
-  int32_t dacOut1value, dacOut2value, deltaDACvalue;
- 
-  deltaDACvalue = deltaDAC(mean_I_SENSE_4T);
-  dacOut1value = (DACmax+10*deltaDACvalue)/2;
-  dacOut2value = (DACmax-10*deltaDACvalue)/2;
-
-  dacPutChannelX(&DACD1, 0, dacOut1value);
-  dacPutChannelX(&DACD2, 0, dacOut2value);
-  palTogglePad(DAC_GPIO, DAC1_PIN);
-  palTogglePad(DAC_GPIO, DAC2_PIN);
-  */
+void dac_write(int dac, int16_t val) {
+  switch(dac){
+  case 1:
+    dacPutChannelX(&DACD1, 0, val);
+    break;
+  case 2:
+    dacPutChannelX(&DACD2, 0, val);
+    break;
+  default:
+    break;
+  }  
 }
-
-GPTConfig gpt_config = {
-  192000,  //96000,
-  toggler,
-  TIM_CR2_MMS_1, // What ???
-  0
-};
 
 static const DACConfig dac_config = {
   .init         = 1, //2047U
@@ -55,20 +43,9 @@ static const DACConfig dac_config = {
 
 void dac_init(void) {
 
-  /*
-   * Starting DAC1 driver, setting up the output pin as analog as suggested
-   * by the Reference Manual.
-   */
   palSetPadMode(DAC_GPIO, DAC1_PIN, PAL_MODE_INPUT_ANALOG);
   palSetPadMode(DAC_GPIO, DAC2_PIN, PAL_MODE_INPUT_ANALOG);
 
   dacStart(&DACD1, &dac_config);
   dacStart(&DACD2, &dac_config);
-
-  gptObjectInit(&GPTD1);
-
-  gptStart(&GPTD1, &gpt_config);
-
-  gptStartContinuous(&GPTD1, 2);
-
 }

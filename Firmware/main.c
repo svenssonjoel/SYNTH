@@ -26,11 +26,38 @@
 #include "usbcfg.h"
 #include "chprintf.h"
 
-#include "config.h"
 #include "adc.h"
 #include "dac.h"
 #include "led.h"
 #include "repl.h"
+
+unsigned short sin_buffer[256]; 
+
+unsigned int freq = 1000;
+unsigned int base_freq = 96000;
+float base_freq_period = 1.0/96000.0;
+
+void output(GPTDriver *gpt) {
+  (void) gpt;
+
+  static unsigned int cnt = 0; 
+ 
+  float t = ((float)cnt * base_freq_period);
+  unsigned char a = (unsigned char)(t * 256 * freq);
+  
+  dac_write(1, sin_buffer[a]);
+  dac_write(2, sin_buffer[a]);
+  cnt++;
+}
+
+GPTConfig gpt_config = {
+  192000, 
+  output,
+  TIM_CR2_MMS_1, // What ???
+  0
+};
+
+
 
 int main(void) {
   halInit();
@@ -38,7 +65,11 @@ int main(void) {
 
   adc_init();
   led_init();
-  //dac_init();
+  dac_init();
+
+  gptObjectInit(&GPTD1);
+  gptStart(&GPTD1, &gpt_config);
+  gptStartContinuous(&GPTD1, 2);
 
 
   sduObjectInit(&SDU1);

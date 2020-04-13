@@ -22,7 +22,6 @@ Copyright 2019/2020   Joel Svensson	svenssonjoel@yahoo.se
 #include "ch.h"
 #include "hal.h"
 #include "hal_pal.h"
-#include "config.h"
 
 extern uint16_t adc_value(int ix);
 extern void adc_init(void);
