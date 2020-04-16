@@ -53,8 +53,8 @@ void output(GPTDriver *gpt) {
   float t = ((float)cnt * base_freq_period);
   unsigned char a = (unsigned char)(t * 256 * (adc));
   
-  dac_write(1, sin_buffer[a]);
-  dac_write(2, sin_buffer[a]);
+  dac_write(DAC1, sin_buffer[a]);
+  dac_write(DAC2, sin_buffer[a]);
   cnt++;
 }
 
