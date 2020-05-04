@@ -40,13 +40,21 @@ float base_freq_period = 1.0/96000.0;
 void output(GPTDriver *gpt) {
   (void) gpt;
 
-  static unsigned int cnt = 0; 
- 
-  float t = ((float)cnt * base_freq_period);
-  unsigned char a = (unsigned char)(t * 256 * freq);
+  static unsigned int cnt = 0;
+  static int led = 1;
+  //led_write(LED_GREEN, led);
+  if (cnt == 0) {
+    if (led == 0) led = 1;
+    if (led == 1) led = 0;
+  }
+
+  int adc = adc_value(1);
   
-  dac_write(1, sin_buffer[a]);
-  dac_write(2, sin_buffer[a]);
+  float t = ((float)cnt * base_freq_period);
+  unsigned char a = (unsigned char)(t * 256 * (adc));
+  
+  dac_write(DAC1, sin_buffer[a]);
+  dac_write(DAC2, sin_buffer[a]);
   cnt++;
 }
 
@@ -63,6 +71,10 @@ int main(void) {
   halInit();
   chSysInit();
 
+  for (int i = 0; i < 256; i ++) {
+    sin_buffer[i] = (unsigned short)(2047.5 + (2047.5 * sin(2*3.1459*((float)i/256.0))));
+  }
+
   adc_init();
   led_init();
   dac_init();
@@ -72,30 +84,33 @@ int main(void) {
   gptStartContinuous(&GPTD1, 2);
 
 
+  /*
   sduObjectInit(&SDU1);
   sduStart(&SDU1, &serusbcfg);
+  */
 
   /*
    * Activates the USB driver and then the USB bus pull-up on D+.
    * Note, a delay is inserted in order to not have to disconnect the cable
    * after a reset.
    */
+  /*
   usbDisconnectBus(serusbcfg.usbp);
   chThdSleepMilliseconds(1500);
   usbStart(serusbcfg.usbp, &usbcfg);
   usbConnectBus(serusbcfg.usbp);
   chThdSleepMilliseconds(500);
-
+  */
   //createReplThread((BaseSequentialStream *)&SDU1);
 
   /*
    *  Main thread activity...
    */
   while (true) {
-
-    for (int i = 0; i < 4; i ++) {
-      chprintf((BaseSequentialStream *)&SDU1, "%d: %d \r\n", i, adc_value(i));
-    }
+    
+    //for (int i = 0; i < 4; i ++) {
+    //  chprintf((BaseSequentialStream *)&SDU1, "%d: %d \r\n", i, adc_value(i));
+    //}
     if (adc_value(0) > 2047) {
       led_write(LED_RED, 1);
     } else {
@@ -104,4 +119,5 @@ int main(void) {
     
     chThdSleepMilliseconds(500);
   }
+
 }

@@ -22,10 +22,10 @@
 
 void dac_write(int dac, int16_t val) {
   switch(dac){
-  case 1:
+  case DAC1:
     dacPutChannelX(&DACD1, 0, val);
     break;
-  case 2:
+  case DAC2:
     dacPutChannelX(&DACD2, 0, val);
     break;
   default:

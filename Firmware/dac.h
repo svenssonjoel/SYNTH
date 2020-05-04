@@ -27,6 +27,9 @@ Copyright 2020   Anders Thorsén thorsenanders@yahoo.com
 #define DAC1_PIN 4
 #define DAC2_PIN 5
 
+#define DAC1 1
+#define DAC2 2
+
 extern void dac_init(void);
 extern void dac_write(int dac, int16_t val);
 
